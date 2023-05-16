@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="~{common/head.html}"></div>
+
+<body class="crm_body_bg">
+
+<div th:insert="~{common/navbar.html}"></div>
+
+<section class="main_content dashboard_part">
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-xl">
+                    <div class="white_box QA_section card_height_100">
+                        <div class="white_box_tittle list_header m-0 align-items-center">
+                            <div class="main-title mb-sm-15">
+                                <h3 class="m-0 nowrap">Work schedule directory</h3>
+                            </div>
+
+                            <a th:href="@{/doctor/work-schedule/add(id = ${doctorId})}"
+                               class="btn btn-primary" style="margin-right: 20px; float: right;">
+                                Add
+                            </a>
+                        </div>
+
+                        <div th:insert="~{schedules/work-schedule-table.html}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:insert="~{common/scripts.html}"></div>
+
+</body>
+</html>

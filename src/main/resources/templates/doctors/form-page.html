@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div th:insert="~{common/head.html}"></div>
+
+<body class="crm_body_bg">
+
+<div th:insert="~{common/navbar.html}"></div>
+
+<section class="main_content dashboard_part">
+    <div th:if="${successMessage}" class="alert alert-success" role="alert">
+        <span th:text="${successMessage}"></span>
+    </div>
+
+    <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+        <span th:text="${errorMessage}"></span>
+    </div>
+
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="modal-content cs_modal">
+                                <div class="modal-body">
+                                    <form action="#" th:action="@{/doctor/save}" th:object="${doctor}" method="post">
+                                        <div class="modal-header" style="margin-bottom: 20px">
+                                            <h3 th:text="
+                                                ${doctor.id != 0
+                                                ?
+                                                doctor.lastName + ' ' +
+                                                doctor.firstName + ' ' +
+                                                (doctor.middleName != null ? doctor.middleName : '')
+
+                                                :
+                                                'New doctor'}"
+
+                                                class="modal-title"
+                                                th:classappend="
+                                                ${doctor.id != 0
+                                                ?
+                                                (doctor.accountData.active) ? 'text-success' : 'text-danger'
+
+                                                :
+                                                'text-info'}">
+                                            </h3>
+                                        </div>
+
+                                        <input type="hidden" th:field="*{id}">
+
+                                        <div>
+                                            <label for="last_name" style="margin-left: 10px; margin-bottom: 10px">
+                                                Last name
+
+                                                <br>
+                                                <label th:if="${#fields.hasErrors('lastName')}"
+                                                       th:errors="*{lastName}"
+                                                       style="color: red;">
+                                                </label>
+                                            </label>
+
+                                            <input type="text" th:field="*{lastName}"
+                                                   class="form-control" id="last_name">
+                                        </div>
+
+                                        <div class="">
+                                            <label for="first_name" style="margin-left: 10px; margin-bottom: 10px">
+                                                First name
+
+                                                <br>
+                                                <label th:if="${#fields.hasErrors('firstName')}"
+                                                       th:errors="*{firstName}"
+                                                       style="color: red;">
+                                                </label>
+                                            </label>
+
+                                            <input type="text" th:field="*{firstName}"
+                                                   class="form-control" id="first_name">
+                                        </div>
+
+                                        <div class="">
+                                            <label for="middle_name" style="margin-left: 10px; margin-bottom: 10px">
+                                                Middle name
+                                            </label>
+
+                                            <input type="text" th:field="*{middleName}"
+                                                   class="form-control" id="middle_name">
+                                        </div>
+
+                                        <div class="">
+                                            <label for="position" style="margin-left: 10px; margin-bottom: 10px">
+                                                Position
+
+                                                <br>
+                                                <label th:if="${#fields.hasErrors('position')}"
+                                                       th:errors="*{position}"
+                                                       style="color: red;">
+                                                </label>
+                                            </label>
+
+                                            <input type="text" th:field="*{position}"
+                                                   class="form-control" id="position">
+                                        </div>
+
+                                        <div class="">
+                                            <label for="speciality" style="margin-left: 10px; margin-bottom: 10px">
+                                                Speciality
+
+                                                <br>
+                                                <label th:if="${#fields.hasErrors('speciality')}"
+                                                       th:errors="*{speciality}"
+                                                       style="color: red;">
+                                                </label>
+                                            </label>
+
+                                            <input type="text" th:field="*{speciality}"
+                                                   class="form-control" id="speciality">
+                                        </div>
+
+                                        <div class="">
+                                            <label for="cabinetNumber" style="margin-left: 10px; margin-bottom: 10px">
+                                                Cabinet number
+
+                                                <br>
+                                                <label th:if="${#fields.hasErrors('cabinetNumber')}"
+                                                       th:errors="*{cabinetNumber}"
+                                                       style="color: red;">
+                                                </label>
+                                            </label>
+
+                                            <input type="number" min="0" th:field="*{cabinetNumber}"
+                                                   class="form-control" id="cabinetNumber">
+                                        </div>
+
+                                        <div class="modal-header" style="margin-bottom: 20px">
+                                            <h4 class="modal-title">Account data</h4>
+                                        </div>
+
+                                        <input type="hidden" th:field="*{accountData.id}">
+
+                                        <div class="">
+                                            <label for="username" style="margin-left: 10px; margin-bottom: 10px">
+                                                Username
+
+                                                <br>
+                                                <label th:if="${#fields.hasErrors('accountData.username')}"
+                                                       th:errors="*{accountData.username}"
+                                                       style="color: red;">
+                                                </label>
+                                            </label>
+
+                                            <input type="text" th:field="*{accountData.username}"
+                                                   class="form-control" id="username">
+                                        </div>
+
+                                        <div class="">
+                                            <label for="password" style="margin-left: 10px; margin-bottom: 10px">
+                                                Password
+
+                                                <br>
+                                                <label th:if="${#fields.hasErrors('accountData.password')}"
+                                                       th:errors="*{accountData.password}"
+                                                       style="color: red;">
+                                                </label>
+                                            </label>
+
+                                            <input type="text" th:field="*{accountData.password}"
+                                                   class="form-control" id="password">
+                                        </div>
+
+                                        <div class="">
+                                            <label th:if="${#fields.hasErrors('accountData.role')}"
+                                                   th:errors="*{accountData.role}"
+                                                   style="color: red;">
+                                            </label>
+                                        </div>
+
+                                        <div class="" style="display: flex;">
+                                            <div>
+                                                <label class="form-label primary_checkbox d-flex me-12 "
+                                                       style="margin-right: 100px; margin-top: 10px; margin-bottom: 25px;">
+
+                                                    <label for="registrar" style="margin-right: 5px">Registrar</label>
+                                                    <input type="radio" th:field="*{accountData.role}" th:value="ROLE_REGISTRAR"
+                                                           name="role" id="registrar">
+
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+
+                                            <div>
+                                                <label class="form-label primary_checkbox d-flex me-12 "
+                                                       style="margin-right: 100px; margin-top: 10px; margin-bottom: 25px;">
+
+                                                    <label for="doctor" style="margin-right: 5px">Doctor</label>
+                                                    <input type="radio" th:field="*{accountData.role}" th:value="ROLE_DOCTOR"
+                                                           name="role" id="doctor">
+
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+
+                                            <div>
+                                                <label class="form-label primary_checkbox d-flex me-12 "
+                                                       style="margin-right: 100px; margin-top: 10px; margin-bottom: 25px;">
+
+                                                    <label for="admin" style="margin-right: 5px">Admin</label>
+                                                    <input type="radio" th:field="*{accountData.role}" th:value="ROLE_ADMIN"
+                                                           name="role" id="admin">
+
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="btn_1 full_width text-center">Save</button>
+
+                                        <a sec:authorize="hasRole('ADMIN')"
+                                           th:if="${doctor.id != 0}"
+                                           th:href="@{/doctor/delete(id=${doctor.id})}"
+                                           onclick="if (!(confirm('Are you sure you want to delete this doctor?'))) return false"
+                                           class="btn_1 full_width text-center"
+                                           style="border-color: #b30c0f; background-color: #b30c0f; color: white;">
+
+                                            Delete
+                                        </a>
+
+                                        <a sec:authorize="hasRole('ADMIN')"
+                                           th:if="${doctor.id != 0}"
+                                           th:href="@{/doctor/work-schedules(id=${doctor.id})}"
+                                           class="btn_1 full_width text-center"
+                                           style="border-color: #dbad16; background-color: #dbad16; color: white;">
+
+                                            Work schedule
+                                        </a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:insert="~{common/scripts.html}"></div>
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="~{common/head.html}"></div>
+
+<body class="crm_body_bg">
+
+<div th:insert="~{common/navbar.html}"></div>
+
+<section class="main_content dashboard_part">
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-xl">
+                    <div class="white_box QA_section card_height_100">
+                        <div class="white_box_tittle list_header m-0 align-items-center">
+                            <div class="main-title mb-sm-15">
+                                <h3 class="m-0 nowrap">Patients directory</h3>
+                            </div>
+
+                            <div class="box_right d-flex lms_block">
+                                <div class="serach_field-area2">
+                                    <div class="search_inner">
+                                        <form th:action="@{/patient/find}" method="post">
+                                            <div class="search_field">
+                                                <input type="text" name="fullName"
+                                                       placeholder="Enter patient's full name...">
+                                            </div>
+
+                                            <button type="submit">
+                                                <i class="ti-search"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div th:insert="~{patients/table.html}"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:insert="~{common/scripts.html}"></div>
+
+</body>
+</html>

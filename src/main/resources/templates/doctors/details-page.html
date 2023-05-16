@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div th:insert="~{common/head.html}"></div>
+
+<body class="crm_body_bg">
+
+<div th:insert="~{common/navbar.html}"></div>
+
+<section class="main_content dashboard_part">
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="white_box mb_30">
+                        <div class="box_header ">
+                            <div class="main-title">
+                                <h3 th:text="
+                                    ${doctor.lastName + ' ' +
+                                    doctor.firstName + ' ' +
+                                    (doctor.middleName != null ? ' ' + doctor.middleName : '')}"
+
+                                    th:classappend="${doctor.accountData.active} ? 'text-success' : 'text-danger'"
+                                    class="mb-0">
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div class="accordion accordion_custom mb_50" id="accordion_ex">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <a href="#" class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                            Info
+                                        </a>
+                                    </h2>
+                                </div>
+
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion_ex">
+                                    <div class="card-body">
+                                        <b>Position:</b>
+                                        <hr>
+                                        <p th:text="${doctor.position}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+                                        <br>
+
+                                        <b>Speciality:</b>
+                                        <hr>
+                                        <p th:text="${doctor.speciality}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+                                        <br>
+
+                                        <b>Cabinet number:</b>
+                                        <hr>
+                                        <p th:text="${doctor.cabinetNumber}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h2 class="mb-0">
+                                        <a href="#" class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Work schedule
+                                        </a>
+                                    </h2>
+                                </div>
+
+                                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion_ex" style="">
+                                    <div class="card-body">
+                                        <div class="QA_table">
+                                            <table class="table lms_table_active2">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col" style="font-size: 17px; font-weight: bold;">
+                                                            Day
+                                                        </th>
+
+                                                        <th scope="col" style="font-size: 17px; font-weight: bold;">
+                                                            Start
+                                                        </th>
+
+                                                        <th scope="col" style="font-size: 17px; font-weight: bold;">
+                                                            End
+                                                        </th>
+
+                                                        <th scope="col" style="font-size: 17px; font-weight: bold;">
+                                                            Lunch start
+                                                        </th>
+
+                                                        <th scope="col" style="font-size: 17px; font-weight: bold;">
+                                                            Lunch end
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <tr th:each="schedule : ${doctor.workSchedule}">
+                                                        <td th:text="${schedule.day}"
+                                                            style="font-size: 15px; font-weight: bold; color: #2daab8;">
+                                                        </td>
+
+                                                        <td th:text="${schedule.workStart}"
+                                                            style="font-size: 15px; font-weight: bold; color: #2daab8;">
+                                                        </td>
+
+                                                        <td th:text="${schedule.workEnd}"
+                                                            style="font-size: 15px; font-weight: bold; color: #2daab8;">
+                                                        </td>
+
+                                                        <td th:text="${schedule.lunchStart}"
+                                                            style="font-size: 15px; font-weight: bold; color: #2daab8;">
+                                                        </td>
+
+                                                        <td th:text="${schedule.lunchEnd}"
+                                                            style="font-size: 15px; font-weight: bold; color: #2daab8;">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h2 class="mb-0">
+                                        <a href="#" class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Duty schedule
+                                        </a>
+                                    </h2>
+                                </div>
+
+                                <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordion_ex">
+                                    <div class="card-body">
+                                        <div class="QA_table">
+                                            <table class="table lms_table_active2">
+                                                <thead>
+                                                    <tr>
+                                                        <th scope="col" style="font-size: 17px; font-weight: bold;">
+                                                            Day
+                                                        </th>
+
+                                                        <th scope="col" style="font-size: 17px; font-weight: bold;">
+                                                            Start
+                                                        </th>
+
+                                                        <th scope="col" style="font-size: 17px; font-weight: bold;">
+                                                            End
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                    <tr th:each="schedule : ${doctor.dutySchedule}">
+                                                        <td th:text="${schedule.day}"
+                                                            style="font-size: 15px; font-weight: bold; color: #2daab8;">
+                                                        </td>
+
+                                                        <td th:text="${schedule.dutyStart}"
+                                                            style="font-size: 15px; font-weight: bold; color: #2daab8;">
+                                                        </td>
+
+                                                        <td th:text="${schedule.dutyEnd}"
+                                                            style="font-size: 15px; font-weight: bold; color: #2daab8;">
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div sec:authorize="hasRole('ADMIN')" class="card">
+                                <div class="card-header" id="headingFour">
+                                    <h2 class="mb-0">
+                                        <a href="#" class="btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            Account data
+                                        </a>
+                                    </h2>
+                                </div>
+
+                                <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion_ex">
+                                    <div class="card-body">
+                                        <b>Username:</b>
+                                        <hr>
+                                        <p th:text="${doctor.accountData.username}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+                                        <br>
+
+                                        <b>Registration date:</b>
+                                        <hr>
+                                        <p th:text="${doctor.accountData.registrationDate}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+                                        <br>
+
+                                        <b>Role:</b>
+                                        <hr>
+                                        <p th:text="${doctor.accountData.role}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+                                        <br>
+
+                                        <b>Active:</b>
+                                        <hr>
+                                        <p th:text="${doctor.accountData.active}"
+                                           th:classappend="${doctor.accountData.active} ? 'text-success' : 'text-danger'"
+                                           style="font-size: 17px; font-weight: bold;">
+                                        </p>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:insert="~{common/scripts.html}"></div>
+
+</body>
+</html>

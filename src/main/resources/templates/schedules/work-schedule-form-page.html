@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div th:insert="~{common/head.html}"></div>
+
+<body class="crm_body_bg">
+
+<div th:insert="~{common/navbar.html}"></div>
+
+<section class="main_content dashboard_part">
+    <div th:if="${successMessage}" class="alert alert-success" role="alert">
+        <span th:text="${successMessage}"></span>
+    </div>
+
+    <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+        <span th:text="${errorMessage}"></span>
+    </div>
+
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="modal-content cs_modal">
+                                <div class="modal-body">
+                                    <form th:action="@{/doctor/work-schedule/save}"
+                                          th:object="${workSchedule}" method="post">
+
+                                        <div class="modal-header" style="margin-bottom: 20px">
+                                            <h3 th:text="${(workSchedule.id != 0) ? workSchedule.day : 'Day'}"></h3>
+                                        </div>
+
+                                        <input type="hidden" th:field="*{id}">
+
+                                        <input type="hidden" th:field="*{doctor}">
+
+                                        <div th:if="${workSchedule.id == 0}">
+                                            <label for="day" style="margin-left: 10px; margin-bottom: 10px">
+                                                Day
+
+                                                <br>
+                                                <label th:if="${#fields.hasErrors('day')}"
+                                                       th:errors="*{day}"
+                                                       style="color: red;">
+                                                </label>
+                                            </label>
+
+                                            <br>
+                                            <select th:field="*{day}" class="custom-select" id="day">
+                                                <option value="">Select day</option>
+
+                                                <option th:each="day : ${days}"
+                                                        th:value="${day}" th:text="${day}">
+                                                </option>
+                                            </select>
+                                        </div>
+
+                                        <div th:if="${workSchedule.id != 0}">
+                                            <input type="hidden" th:field="*{day}">
+                                        </div>
+
+                                        <div class="">
+                                            <label for="work_start" style="margin-left: 10px; margin-bottom: 10px">
+                                                Work start
+
+                                                <br>
+                                                <label th:if="${#fields.hasErrors('workStart')}"
+                                                       th:errors="*{workStart}"
+                                                       style="color: red;">
+                                                </label>
+                                            </label>
+
+                                            <input type="time" th:value="${workStart}" th:field="*{workStart}"
+                                                   class="form-control" id="work_start">
+                                        </div>
+
+                                        <div class="">
+                                            <label for="work_end" style="margin-left: 10px; margin-bottom: 10px">
+                                                Work end
+
+                                                <br>
+                                                <label th:if="${#fields.hasErrors('workEnd')}"
+                                                       th:errors="*{workEnd}"
+                                                       style="color: red;">
+                                                </label>
+                                            </label>
+
+                                            <input type="time" th:value="${workEnd}" th:field="*{workEnd}"
+                                                   class="form-control" id="work_end">
+                                        </div>
+
+
+                                        <div class="">
+                                            <label for="lunch_start" style="margin-left: 10px; margin-bottom: 10px">
+                                                Lunch start
+
+                                                <br>
+                                                <label th:if="${#fields.hasErrors('lunchStart')}"
+                                                       th:errors="*{lunchStart}"
+                                                       style="color: red;">
+                                                </label>
+                                            </label>
+
+                                            <input type="time" th:value="${lunchStart}" th:field="*{lunchStart}"
+                                                   class="form-control" id="lunch_start">
+                                        </div>
+
+                                        <div class="">
+                                            <label th:text="'Lunch end: ' + ${lunchEnd}"
+                                                   for="lunch_end" style="margin-left: 10px; margin-bottom: 10px">
+
+                                                <br>
+                                                <label th:if="${#fields.hasErrors('lunchEnd')}"
+                                                       th:errors="*{lunchEnd}"
+                                                       style="color: red;">
+                                                </label>
+                                            </label>
+
+                                            <input type="time"
+                                                   th:value="${workSchedule.lunchEnd}"
+                                                   th:field="*{lunchEnd}"
+                                                   class="form-control" id="lunch_end">
+                                        </div>
+
+                                        <button type="submit" class="btn_1 full_width text-center">Save</button>
+
+                                        <a th:href="@{/doctor/work-schedules(id=${workSchedule.doctor.id})}"
+                                           class="btn_1 full_width text-center">
+                                            Back
+                                        </a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:insert="~{common/scripts.html}"></div>
+
+</body>
+</html>

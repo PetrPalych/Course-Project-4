@@ -1,0 +1,90 @@
+<nav xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+     class="sidebar">
+
+    <div class="logo d-flex justify-content-between">
+        <a th:href="@{/}">
+            <img th:src="@{/images/logo.png}" src="" alt="">
+        </a>
+
+        <div class="sidebar_close_icon d-lg-none">
+            <i class="ti-close"></i>
+        </div>
+    </div>
+
+    <ul id="sidebar_menu">
+        <li class="side_menu_title">
+            <span>Dashboard</span>
+        </li>
+
+        <li class="mm-active">
+            <a class="has-arrow" aria-expanded="false">
+                <img th:src="@{/images/menu-icon/home.svg}" src="" alt="">
+                <span>Home</span>
+            </a>
+
+            <ul>
+                <li>
+                    <a href="#">Dashboard 1</a>
+                </li>
+
+                <li>
+                    <a href="#">Dashboard 2</a>
+                </li>
+
+                <li>
+                    <a href="#">Dashboard 3</a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="side_menu_title">
+            <span>Applications</span>
+        </li>
+
+        <li class="">
+            <a class="has-arrow" aria-expanded="false">
+                <img th:src="@{/images/menu-icon/tasks.svg}" src="" alt="">
+                <span>Patients</span>
+            </a>
+
+            <ul>
+                <li>
+                    <a th:href="@{/patients?active=true}">Active patients</a>
+                </li>
+
+                <li>
+                    <a sec:authorize="hasAnyRole('REGISTRAR', 'ADMIN')"
+                       th:href="@{/patients?active=false}">Inactive patients</a>
+                </li>
+
+                <li>
+                    <a sec:authorize="hasAnyRole('REGISTRAR', 'ADMIN')"
+                       th:href="@{/patient/add}">Add patient</a>
+                </li>
+            </ul>
+        </li>
+
+        <li class="">
+            <a class="has-arrow" href="#" aria-expanded="false">
+                <img th:src="@{/images/menu-icon/doctors.svg}" src="" alt="">
+                <span>Doctors</span>
+            </a>
+
+            <ul>
+                <li>
+                    <a th:href="@{/doctors?active=true}">Active doctors</a>
+                </li>
+
+                <li>
+                    <a th:href="@{/doctors?active=false}">Inactive doctors</a>
+                </li>
+
+                <li>
+                    <a sec:authorize="hasAnyRole('ADMIN')"
+                       th:href="@{/doctor/add}">Add doctor</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>

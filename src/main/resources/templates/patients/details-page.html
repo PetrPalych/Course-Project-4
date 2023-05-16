@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="~{common/head.html}"></div>
+
+<body class="crm_body_bg">
+
+<div th:insert="~{common/navbar.html}"></div>
+
+<section class="main_content dashboard_part">
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="white_box mb_30">
+                        <div class="box_header ">
+                            <div class="main-title">
+                                <h3 th:text="
+                                    ${patient.lastName + ' ' +
+                                    patient.firstName + ' ' +
+                                    (patient.middleName != null ? ' ' + patient.middleName : '')}"
+
+                                    th:classappend="${patient.active} ? 'text-success' : 'text-danger'"
+                                    class="mb-0">
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div class="accordion accordion_custom mb_50" id="accordion_ex">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <a href="#" class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                            Info
+                                        </a>
+                                    </h2>
+                                </div>
+
+                                <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion_ex">
+                                    <div class="card-body">
+                                        <b>Sex:</b>
+                                        <hr>
+                                        <p th:text="${(patient.sex) ? 'Male' : 'Female'}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+                                        <br>
+
+                                        <b>Birth date:</b>
+                                        <hr>
+                                        <p th:text="${patient.birthDate}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h2 class="mb-0">
+                                        <a href="#" class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Address
+                                        </a>
+                                    </h2>
+                                </div>
+
+                                <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion_ex" style="">
+                                    <div class="card-body">
+                                        <b>City:</b>
+                                        <hr>
+                                        <p th:text="${patient.address.city}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+                                        <br>
+
+                                        <b>District:</b>
+                                        <hr>
+                                        <p th:text="${patient.address.district}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+                                        <br>
+
+                                        <b>Street:</b>
+                                        <hr>
+                                        <p th:text="${patient.address.street}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h2 class="mb-0">
+                                        <a href="#" class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Contacts
+                                        </a>
+                                    </h2>
+                                </div>
+
+                                <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordion_ex">
+                                    <div class="card-body">
+                                        <b>Phone number:</b>
+                                        <hr>
+                                        <p th:text="${patient.contacts.phoneNumber}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+                                        <br>
+
+                                        <b>Email:</b>
+                                        <hr>
+                                        <p th:text="${patient.contacts.Email}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header" id="headingFour">
+                                    <h2 class="mb-0">
+                                        <a href="#" class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                            Passport data
+                                        </a>
+                                    </h2>
+                                </div>
+
+                                <div id="collapseFour" class="collapse show" aria-labelledby="headingFour" data-parent="#accordion_ex">
+                                    <div class="card-body">
+                                        <b>Document ID:</b>
+                                        <hr>
+                                        <p th:text="${patient.passportData.documentId}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+                                        <br>
+
+                                        <b>Personal number:</b>
+                                        <hr>
+                                        <p th:text="${patient.passportData.personalNumber}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:insert="~{common/scripts.html}"></div>
+
+</body>
+</html>
