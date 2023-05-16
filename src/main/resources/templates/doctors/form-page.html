@@ -218,23 +218,29 @@
 
                                         <button type="submit" class="btn_1 full_width text-center">Save</button>
 
-                                        <a sec:authorize="hasRole('ADMIN')"
-                                           th:if="${doctor.id != 0}"
+                                        <a th:if="${doctor.id != 0}"
+                                           th:href="@{/doctor/work-schedules(id=${doctor.id})}"
+                                           class="btn_1 full_width text-center"
+                                           style="border-color: #dbad16; background-color: #dbad16; color: white;">
+
+                                            Work schedule
+                                        </a>
+
+                                        <a th:if="${doctor.id != 0}"
+                                           th:href="@{/doctor/duty-schedules(id=${doctor.id})}"
+                                           class="btn_1 full_width text-center"
+                                           style="border-color: #dbad16; background-color: #dbad16; color: white;">
+
+                                            Duty schedule
+                                        </a>
+
+                                        <a th:if="${doctor.id != 0}"
                                            th:href="@{/doctor/delete(id=${doctor.id})}"
                                            onclick="if (!(confirm('Are you sure you want to delete this doctor?'))) return false"
                                            class="btn_1 full_width text-center"
                                            style="border-color: #b30c0f; background-color: #b30c0f; color: white;">
 
                                             Delete
-                                        </a>
-
-                                        <a sec:authorize="hasRole('ADMIN')"
-                                           th:if="${doctor.id != 0}"
-                                           th:href="@{/doctor/work-schedules(id=${doctor.id})}"
-                                           class="btn_1 full_width text-center"
-                                           style="border-color: #dbad16; background-color: #dbad16; color: white;">
-
-                                            Work schedule
                                         </a>
                                     </form>
                                 </div>

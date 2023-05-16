@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ControllerAdvice
-public class PatientExceptionHandler {
+public class CustomExceptionHandler {
 
     @ExceptionHandler(PatientNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public String handlePatientNotFoundException() {
-        return "errors/404-page";
+        return "errors/not-found-page";
     }
 
 }

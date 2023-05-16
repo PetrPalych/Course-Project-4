@@ -24,18 +24,18 @@
                         <div class="col-lg-6">
                             <div class="modal-content cs_modal">
                                 <div class="modal-body">
-                                    <form th:action="@{/doctor/work-schedule/save}"
-                                          th:object="${workSchedule}" method="post">
+                                    <form th:action="@{/doctor/duty-schedule/save}"
+                                          th:object="${dutySchedule}" method="post">
 
                                         <div class="modal-header" style="margin-bottom: 20px">
-                                            <h3 th:text="${(workSchedule.id != 0) ? workSchedule.day : 'Day'}"></h3>
+                                            <h3 th:text="${(dutySchedule.id != 0) ? dutySchedule.day : 'Day'}"></h3>
                                         </div>
 
                                         <input type="hidden" th:field="*{id}">
 
                                         <input type="hidden" th:field="*{doctor}">
 
-                                        <div th:if="${workSchedule.id == 0}">
+                                        <div th:if="${dutySchedule.id == 0}">
                                             <label for="day" style="margin-left: 10px; margin-bottom: 10px">
                                                 Day
 
@@ -56,76 +56,43 @@
                                             </select>
                                         </div>
 
-                                        <div th:if="${workSchedule.id != 0}">
+                                        <div th:if="${dutySchedule.id != 0}">
                                             <input type="hidden" th:field="*{day}">
                                         </div>
 
                                         <div class="">
                                             <label for="work_start" style="margin-left: 10px; margin-bottom: 10px">
-                                                Work start
+                                                Duty start
 
                                                 <br>
-                                                <label th:if="${#fields.hasErrors('workStart')}"
-                                                       th:errors="*{workStart}"
+                                                <label th:if="${#fields.hasErrors('dutyStart')}"
+                                                       th:errors="*{dutyStart}"
                                                        style="color: red;">
                                                 </label>
                                             </label>
 
-                                            <input type="time" th:value="${workStart}" th:field="*{workStart}"
+                                            <input type="time" th:value="${dutyStart}" th:field="*{dutyStart}"
                                                    class="form-control" id="work_start">
                                         </div>
 
                                         <div class="">
                                             <label for="work_end" style="margin-left: 10px; margin-bottom: 10px">
-                                                Work end
+                                                Duty end
 
                                                 <br>
-                                                <label th:if="${#fields.hasErrors('workEnd')}"
-                                                       th:errors="*{workEnd}"
+                                                <label th:if="${#fields.hasErrors('dutyEnd')}"
+                                                       th:errors="*{dutyEnd}"
                                                        style="color: red;">
                                                 </label>
                                             </label>
 
-                                            <input type="time" th:value="${workEnd}" th:field="*{workEnd}"
+                                            <input type="time" th:value="${dutyEnd}" th:field="*{dutyEnd}"
                                                    class="form-control" id="work_end">
-                                        </div>
-
-
-                                        <div class="">
-                                            <label for="lunch_start" style="margin-left: 10px; margin-bottom: 10px">
-                                                Lunch start
-
-                                                <br>
-                                                <label th:if="${#fields.hasErrors('lunchStart')}"
-                                                       th:errors="*{lunchStart}"
-                                                       style="color: red;">
-                                                </label>
-                                            </label>
-
-                                            <input type="time" th:value="${lunchStart}" th:field="*{lunchStart}"
-                                                   class="form-control" id="lunch_start">
-                                        </div>
-
-                                        <div class="">
-                                            <label th:text="'Lunch end: ' + ${lunchEnd}"
-                                                   for="lunch_end" style="margin-left: 10px; margin-bottom: 10px">
-
-                                                <br>
-                                                <label th:if="${#fields.hasErrors('lunchEnd')}"
-                                                       th:errors="*{lunchEnd}"
-                                                       style="color: red;">
-                                                </label>
-                                            </label>
-
-                                            <input type="time"
-                                                   th:value="${workSchedule.lunchEnd}"
-                                                   th:field="*{lunchEnd}"
-                                                   class="form-control" id="lunch_end">
                                         </div>
 
                                         <button type="submit" class="btn_1 full_width text-center">Save</button>
 
-                                        <a th:href="@{/doctor/work-schedules(id=${workSchedule.doctor.id})}"
+                                        <a th:href="@{/doctor/duty-schedules(id=${dutySchedule.doctor.id})}"
                                            class="btn_1 full_width text-center">
                                             Back
                                         </a>
