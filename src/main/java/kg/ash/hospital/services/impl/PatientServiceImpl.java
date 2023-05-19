@@ -1,4 +1,4 @@
-package kg.ash.hospital.services.implementation;
+package kg.ash.hospital.services.impl;
 
 import kg.ash.hospital.dao.repositories.patients.PatientRepository;
 import kg.ash.hospital.entities.patients.Patient;

@@ -291,6 +291,22 @@
 
                                         <button type="submit" class="btn_1 full_width text-center">Save</button>
 
+                                        <a th:if="${patient.id != 0}"
+                                           th:href="@{/patient/appointments(id=${patient.id})}"
+                                           class="btn_1 full_width text-center"
+                                           style="background-color: #dbad16; color: white;">
+
+                                            Appointments
+                                        </a>
+
+                                        <a th:if="${patient.id != 0}"
+                                           th:href="@{/appointments/add(id=${patient.id})}"
+                                           class="btn_1 full_width text-center"
+                                           style="background-color: #dbad16; color: white;">
+
+                                            Add appointment
+                                        </a>
+
                                         <a sec:authorize="hasRole('ADMIN')"
                                            th:if="${patient.id != 0}"
                                            th:href="@{/patient/delete(id=${patient.id})}"

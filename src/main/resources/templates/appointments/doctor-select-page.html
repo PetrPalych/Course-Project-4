@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="~{common/head.html}"></div>
+
+<body class="crm_body_bg">
+
+<div th:insert="~{common/navbar.html}"></div>
+
+<section class="main_content dashboard_part">
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-xl">
+                    <div class="white_box QA_section card_height_100">
+                        <div class="white_box_tittle list_header m-0 align-items-center">
+                            <div class="main-title mb-sm-15">
+                                <h3 class="m-0 nowrap">Appointments directory</h3>
+                            </div>
+
+                            <div class="box_right d-flex lms_block">
+                                <div class="serach_field-area2">
+                                    <div class="search_inner">
+                                        <form th:action="@{/appointment/doctor/find(patientId=${patientId})}" method="post">
+                                            <div class="search_field">
+                                                <input type="text" name="fullName"
+                                                       placeholder="Enter doctor's full name...">
+                                            </div>
+
+                                            <button type="submit">
+                                                <i class="ti-search"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="QA_table">
+                            <table class="table lms_table_active2">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Doctor's name</th>
+                                        <th scope="col">Position</th>
+                                        <th scope="col">Speciality</th>
+                                        <th scope="col">Cabinet number</th>
+                                        <th scope="col">Action</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr th:each="doctor : ${doctors}">
+                                        <td th:text="
+                                            ${doctor.lastName + ' ' +
+                                            doctor.firstName + ' ' +
+                                            (doctor.middleName != null ? ' ' + doctor.middleName : '')}"
+
+                                            th:classappend="${doctor.accountData.active} ? 'text-success' : 'text-danger'">
+                                        </td>
+
+                                        <td th:text="${doctor.position}"></td>
+
+                                        <td th:text="${doctor.speciality}"></td>
+
+                                        <td th:text="${doctor.cabinetNumber}"></td>
+
+                                        <td>
+                                            <a th:href="@{/doctor(id=${doctor.id})}"
+                                               class="btn btn-primary btn-sm">
+                                                <p style="color: white;">Details</p>
+                                            </a>
+
+                                            <a th:href="@{/appointment/form(patientId=${patientId}, doctorId=${doctor.id})}"
+                                               class="btn btn-info btn-sm"
+                                               onclick="if (!(confirm('Are you sure you want select this doctor?'))) return false">
+                                                <p style="color: white;">Select</p>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:insert="~{common/scripts.html}"></div>
+
+</body>
+</html>

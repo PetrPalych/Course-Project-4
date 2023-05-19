@@ -1,4 +1,4 @@
-package kg.ash.hospital.services.implementation;
+package kg.ash.hospital.services.impl;
 
 import kg.ash.hospital.dao.repositories.doctors.AccountDataRepository;
 import kg.ash.hospital.enums.Role;

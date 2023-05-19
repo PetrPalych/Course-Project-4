@@ -12,8 +12,7 @@ import java.util.List;
 @Repository
 public interface PatientRepository extends JpaRepository<Patient, Integer> {
 
-    @Query(value = "SELECT * FROM patient WHERE active = :active ORDER BY id DESC LIMIT :limit",
-            nativeQuery = true)
+    @Query(value = "SELECT * FROM patient WHERE active = :active ORDER BY id DESC LIMIT :limit", nativeQuery = true)
     List<Patient> findAllOrderByIdDesk(@Param("limit") int limit, @Param("active") boolean active);
 
     @Query(value =

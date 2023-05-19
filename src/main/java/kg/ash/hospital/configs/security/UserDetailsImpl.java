@@ -1,4 +1,4 @@
-package kg.ash.hospital.configs;
+package kg.ash.hospital.configs.security;
 
 import kg.ash.hospital.entities.doctors.AccountData;
 

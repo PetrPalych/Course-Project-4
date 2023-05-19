@@ -1,6 +1,6 @@
-package kg.ash.hospital.configs;
+package kg.ash.hospital.configs.security;
 
-import kg.ash.hospital.services.implementation.UserDetailsServiceImpl;
+import kg.ash.hospital.services.impl.UserDetailsServiceImpl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

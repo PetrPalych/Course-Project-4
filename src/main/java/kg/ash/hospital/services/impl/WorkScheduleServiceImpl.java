@@ -1,4 +1,4 @@
-package kg.ash.hospital.services.implementation;
+package kg.ash.hospital.services.impl;
 
 import kg.ash.hospital.dao.repositories.doctors.WorkScheduleRepository;
 import kg.ash.hospital.entities.doctors.Doctor;

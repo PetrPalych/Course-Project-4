@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="~{common/head.html}"></div>
+
+<body class="crm_body_bg">
+
+<div th:insert="~{common/navbar.html}"></div>
+
+<section class="main_content dashboard_part">
+    <div th:if="${successMessage}" class="alert alert-success" role="alert">
+        <span th:text="${successMessage}"></span>
+    </div>
+
+    <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+        <span th:text="${errorMessage}"></span>
+    </div>
+
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="modal-content cs_modal">
+                                <div class="modal-body">
+                                    <form action="#" th:action="@{/appointment/save}" th:object="${appointment}" method="post">
+                                        <div class="modal-header" style="margin-bottom: 20px">
+                                            <h3>New appointment</h3>
+                                        </div>
+
+                                        <div class="modal-header" style="margin-bottom: 20px">
+                                            <h4 th:text="${
+                                            appointment.patient.lastName + ' ' +
+                                            appointment.patient.firstName + ' ' +
+                                            (appointment.patient.middleName != null ? appointment.patient.middleName : '')}">
+                                            </h4>
+                                        </div>
+
+                                        <div class="modal-header" style="margin-bottom: 20px">
+                                            <h4 th:text="${
+                                                appointment.doctor.lastName + ' ' +
+                                                appointment.doctor.firstName + ' ' +
+                                                (appointment.doctor.middleName != null ? appointment.doctor.middleName : '')}">
+                                            </h4>
+                                        </div>
+
+                                        <input type="hidden" th:field="*{id}">
+
+                                        <input type="hidden" th:field="*{patient}">
+
+                                        <input type="hidden" th:field="*{doctor}">
+
+                                        <div class="">
+                                            <label for="dateTime" style="margin-left: 10px; margin-bottom: 10px">
+                                                Datetime
+                                            </label>
+
+                                            <input type="datetime-local" th:field="*{dateTime}"
+                                                   class="form-control" id="dateTime">
+                                        </div>
+
+                                        <button type="submit" class="btn_1 full_width text-center">Save</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:insert="~{common/scripts.html}"></div>
+
+</body>
+</html>

@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -36,7 +37,7 @@ public class Appointment {
     private Doctor doctor;
 
     @Column(name = "date", nullable = false)
-    private LocalDate date;
+    private LocalDateTime dateTime = LocalDateTime.now();
 
     @OneToOne
     @JoinColumn(name = "treatment_id", referencedColumnName = "id")
