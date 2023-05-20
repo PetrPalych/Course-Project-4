@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="~{common/head.html}"></div>
+
+<body class="crm_body_bg">
+
+<div th:insert="~{common/navbar.html}"></div>
+
+<section class="main_content dashboard_part">
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="white_box mb_30">
+                        <div class="box_header ">
+                            <div class="main-title">
+                                <h4>
+                                    <b>Appointment datetime:</b>
+                                </h4>
+
+                                <h3 th:text="${
+                                    appointment.dateTime.getHour() + ':' + appointment.dateTime.getMinute() + ' ' +
+
+                                    appointment.dateTime.getDayOfMonth() + '.' +
+                                    appointment.dateTime.getMonthValue() + '.' +
+                                    appointment.dateTime.getYear()}"
+                                    class="mb-0"
+                                    style="font-weight: bold; color: #2daab8">
+                                </h3>
+                            </div>
+                        </div>
+
+                        <div class="accordion accordion_custom mb_50" id="accordion_ex">
+                            <div class="card">
+                                <div class="card-header" id="headingOne">
+                                    <h2 class="mb-0">
+                                        <a href="#" class="btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                            Doctor
+                                        </a>
+                                    </h2>
+                                </div>
+
+                                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion_ex">
+                                    <div class="card-body">
+                                        <b>Position:</b>
+                                        <hr>
+                                        <p th:text="${appointment.doctor.position}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+                                        <br>
+
+                                        <b>Speciality:</b>
+                                        <hr>
+                                        <p th:text="${appointment.doctor.speciality}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+                                        <br>
+
+                                        <b>Cabinet number:</b>
+                                        <hr>
+                                        <p th:text="${appointment.doctor.cabinetNumber}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+
+                                        <a th:href="@{/doctor(id=${appointment.doctor.id})}"
+                                            class="btn btn-primary">
+                                            Profile
+                                        </a>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card">
+                                <div class="card-header" id="headingTwo">
+                                    <h2 class="mb-0">
+                                        <a href="#" class="btn collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                            Patient
+                                        </a>
+                                    </h2>
+                                </div>
+
+                                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion_ex" style="">
+                                    <div class="card-body">
+                                        <b>Full name:</b>
+                                        <hr>
+                                        <p th:text="${
+                                            appointment.patient.lastName + ' ' +
+                                            appointment.patient.firstName + ' ' +
+                                            (appointment.patient.middleName != null ? ' ' + appointment.patient.middleName : '')}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+                                        <br>
+
+                                        <b>Sex:</b>
+                                        <hr>
+                                        <p th:text="${(appointment.patient.sex) ? 'Male' : 'Female'}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+                                        <br>
+
+                                        <b>Date of birth:</b>
+                                        <hr>
+                                        <p th:text="${appointment.patient.birthDate}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+
+                                        <a th:href="@{/patient(id=${appointment.doctor.id})}"
+                                           class="btn btn-primary">
+                                            Profile
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div th:if="${appointment.treatment == null}" class="card">
+                                <a th:href="@{treatment/add(appointmentId = ${appointment.id}, patientId=${appointment.patient.id}, doctorId=${appointment.doctor.id})}" class="btn btn-primary">
+                                    Add treatment
+                                </a>
+                            </div>
+
+                            <div th:if="${appointment.recipes.size() == 0}" class="card">
+                                <a class="btn btn-primary">
+                                    Recipes
+                                </a>
+                            </div>
+
+                            <div th:if="${appointment.treatment != null}" class="card">
+                                <div class="card-header" id="headingThree">
+                                    <h2 class="mb-0">
+                                        <a href="#" class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                            Treatment
+                                        </a>
+                                    </h2>
+                                </div>
+
+                                <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordion_ex">
+                                    <div class="card-body">
+                                        <b>Text:</b>
+                                        <hr>
+                                        <p th:text="${appointment.patient.birthDate}"
+                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
+                                        </p>
+                                        <br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:insert="~{common/scripts.html}"></div>
+
+</body>
+</html>

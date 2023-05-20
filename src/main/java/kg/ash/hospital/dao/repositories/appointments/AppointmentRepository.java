@@ -15,4 +15,6 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
     @Query(value = "SELECT * FROM appointment ORDER BY id DESC LIMIT :limit", nativeQuery = true)
     List<Appointment> findAllOrderByIdDesk(@Param("limit") int limit);
 
+    @Query(value = "SELECT * FROM appointment WHERE patient_id=:patientId", nativeQuery = true)
+    List<Appointment> findByPatientId(@Param("patientId") int patientId);
 }

@@ -1,6 +1,5 @@
 package kg.ash.hospital.controllers;
 
-import jakarta.validation.Valid;
 import kg.ash.hospital.entities.appointments.Appointment;
 import kg.ash.hospital.services.interfaces.AppointmentService;
 import kg.ash.hospital.services.interfaces.DoctorService;
@@ -9,14 +8,13 @@ import kg.ash.hospital.services.interfaces.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-public class RegistrarController {
+public class AppointmentController {
 
     private final AppointmentService appointmentService;
 
@@ -25,7 +23,7 @@ public class RegistrarController {
     private final PatientService patientService;
 
     @Autowired
-    public RegistrarController(AppointmentService appointmentService, PatientService patientService, DoctorService doctorService, PatientService patientService1) {
+    public AppointmentController(AppointmentService appointmentService, PatientService patientService, DoctorService doctorService, PatientService patientService1) {
         this.appointmentService = appointmentService;
         this.doctorService = doctorService;
         this.patientService = patientService1;
@@ -36,6 +34,20 @@ public class RegistrarController {
         model.addAttribute("appointments", appointmentService.findAllOrderByIdDesk(25));
 
         return "appointments/list-page";
+    }
+
+    @GetMapping("/appointments/patient")
+    public String patientAppointments(@RequestParam("id") int id, Model model) {
+        model.addAttribute("appointments", appointmentService.findByPatientId(id));
+
+        return "appointments/list-page";
+    }
+
+    @GetMapping("/appointment")
+    public String appointment(@RequestParam("id") int id, Model model) {
+        model.addAttribute("appointment", appointmentService.find(id));
+
+        return "appointments/details-page";
     }
 
     @GetMapping("/appointments/add")
