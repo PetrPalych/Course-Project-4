@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="~{common/head.html}"></div>
+
+<body class="crm_body_bg">
+
+<div th:insert="~{common/navbar.html}"></div>
+
+<section class="main_content dashboard_part">
+    <div th:if="${successMessage}" class="alert alert-success" role="alert">
+        <span th:text="${successMessage}"></span>
+    </div>
+
+    <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+        <span th:text="${errorMessage}"></span>
+    </div>
+
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="modal-content cs_modal">
+                                <div class="modal-body">
+                                    <form th:action="@{/treatment/survey/save}"
+                                          th:object="${survey}" method="post">
+
+                                        <div class="modal-header" style="margin-bottom: 20px">
+                                            <h3 th:text="${(survey.id != 0) ? survey.date : 'New survey'}"></h3>
+                                        </div>
+
+                                        <input type="hidden" th:field="*{id}">
+
+                                        <input type="hidden" th:field="*{treatment}">
+
+                                        <div class="">
+                                            <label for="complaints" style="margin-left: 10px; margin-bottom: 10px">
+                                                Complaints
+
+                                                <br>
+                                                <label th:if="${#fields.hasErrors('complaints')}"
+                                                       th:errors="*{complaints}"
+                                                       style="color: red;">
+                                                </label>
+                                            </label>
+
+                                            <textarea th:value="${complaints}" th:field="*{complaints}"
+                                                   class="form-control" id="complaints">
+                                            </textarea>
+                                        </div>
+
+                                        <div class="">
+                                            <label for="preliminary-diagnosis" style="margin-left: 10px; margin-bottom: 10px">
+                                                Preliminary diagnosis
+
+                                                <br>
+                                                <label th:if="${#fields.hasErrors('preliminaryDiagnosis')}"
+                                                       th:errors="*{preliminaryDiagnosis}"
+                                                       style="color: red;">
+                                                </label>
+                                            </label>
+
+                                            <input type="text" th:value="${preliminaryDiagnosis}" th:field="*{preliminaryDiagnosis}"
+                                                   class="form-control" id="preliminary-diagnosis">
+                                        </div>
+
+                                        <div class="">
+                                            <label for="plan" style="margin-left: 10px; margin-bottom: 10px">
+                                                PLan
+
+                                                <br>
+                                                <label th:if="${#fields.hasErrors('plan')}"
+                                                       th:errors="*{plan}"
+                                                       style="color: red;">
+                                                </label>
+                                            </label>
+
+                                            <textarea th:value="${plan}" th:field="*{plan}"
+                                                   class="form-control" id="plan">
+                                            </textarea>
+                                        </div>
+
+                                        <div class="">
+                                            <label for="result" style="margin-left: 10px; margin-bottom: 10px">
+                                                Result
+
+                                                <br>
+                                                <label th:if="${#fields.hasErrors('result')}"
+                                                       th:errors="*{result}"
+                                                       style="color: red;">
+                                                </label>
+                                            </label>
+
+                                            <textarea th:value="${result}" th:field="*{result}"
+                                                   class="form-control" id="result">
+                                            </textarea>
+                                        </div>
+
+                                        <div class="">
+                                            <label for="date" style="margin-left: 10px; margin-bottom: 10px">
+                                                Date
+
+                                                <br>
+                                                <label th:if="${#fields.hasErrors('date')}"
+                                                       th:errors="*{date}"
+                                                       style="color: red;">
+                                                </label>
+                                            </label>
+
+                                            <input type="date" th:value="${survey.date}" class="form-control" name="date" id="date">
+                                        </div>
+
+                                        <button type="submit" class="btn_1 full_width text-center">Save</button>
+
+                                        <a th:href="@{/treatment/surveys(treatmentId=${survey.treatment.id})}"
+                                           class="btn_1 full_width text-center">
+                                            Back
+                                        </a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:insert="~{common/scripts.html}"></div>
+
+</body>
+</html>

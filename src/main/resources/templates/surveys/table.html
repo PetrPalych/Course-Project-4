@@ -26,18 +26,17 @@
                 <td th:text="${survey.result}"></td>
 
                 <td>
-                    <a th:href="@{/}" class="btn btn-primary btn-sm">
+                    <a th:href="@{/treatment/survey(surveyId=${survey.id})}" class="btn btn-primary btn-sm">
                         <p style="color: white;">Details</p>
                     </a>
 
-                    <a th:href="@{/}"
+                    <a th:href="@{/treatment/survey/update(surveyId=${survey.id})}"
                        class="btn btn-warning btn-sm">
 
                         <p style="color: white;">Update</p>
                     </a>
 
-                    <a sec:authorize="hasRole('ADMIN')"
-                       th:href="@{/}"
+                    <a th:href="@{/treatment/survey/delete(surveyId=${survey.id})}"
                        class="btn btn-danger btn-sm"
                        onclick="if (!(confirm('Are you sure you want to delete this survey?'))) return false">
 

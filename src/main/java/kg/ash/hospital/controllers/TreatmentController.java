@@ -1,9 +1,12 @@
 package kg.ash.hospital.controllers;
 
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
 import kg.ash.hospital.entities.appointments.Appointment;
+import kg.ash.hospital.entities.appointments.Survey;
 import kg.ash.hospital.entities.appointments.Treatment;
+import kg.ash.hospital.entities.patients.Patient;
 import kg.ash.hospital.services.interfaces.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -91,5 +94,52 @@ public class TreatmentController {
         model.addAttribute("surveys", treatmentService.find(treatmentId).getSurveys());
 
         return "surveys/list-page";
+    }
+
+    @GetMapping("/treatment/survey")
+    public String survey(@RequestParam("surveyId") int surveyId, Model model) {
+        model.addAttribute("survey", surveyService.find(surveyId));
+
+        return "surveys/details-page";
+    }
+
+    @GetMapping("/treatment/survey/add")
+    public String addSurvey(@RequestParam("treatmentId") int treatmentId, Model model) {
+        Survey survey = new Survey();
+        survey.setTreatment(treatmentService.find(treatmentId));
+
+        model.addAttribute("survey", survey);
+
+        return "surveys/form-page";
+    }
+
+    @GetMapping("/treatment/survey/update")
+    public String updateSurvey(@RequestParam("surveyId") int surveyId, Model model) {
+        model.addAttribute("survey", surveyService.find(surveyId));
+
+        return "surveys/form-page";
+    }
+
+    @GetMapping("/treatment/survey/delete")
+    public String deleteSurvey(@RequestParam("surveyId") int surveyId, HttpServletRequest httpServletRequest) {
+        surveyService.delete(surveyId);
+
+        return "redirect:" + httpServletRequest.getHeader("Referer");
+    }
+
+    @PostMapping("/treatment/survey/save")
+    public String save(@ModelAttribute("survey") @Valid Survey survey, BindingResult bindingResult, Model model) {
+        if (!bindingResult.hasErrors()) {
+            surveyService.save(survey);
+            treatmentService.save(survey.getTreatment());
+            model.addAttribute("successMessage", "The patient has been saved successfully!");
+
+        }
+
+        else {
+            model.addAttribute("errorMessage", "The patient hasn't been saved!");
+        }
+
+        return "surveys/form-page";
     }
 }
