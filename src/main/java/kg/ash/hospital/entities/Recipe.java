@@ -50,6 +50,6 @@ public class Recipe {
     private String rulesOfMedication;
 
     @Column(name = "date", nullable = false)
-    private LocalDate date;
+    private LocalDate date = LocalDate.now();
 
 }

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="~{common/head.html}"></div>
+
+<body class="crm_body_bg">
+
+<div th:insert="~{common/navbar.html}"></div>
+
+<section class="main_content dashboard_part">
+    <div th:if="${successMessage}" class="alert alert-success" role="alert">
+        <span th:text="${successMessage}"></span>
+    </div>
+
+    <div th:if="${errorMessage}" class="alert alert-danger" role="alert">
+        <span th:text="${errorMessage}"></span>
+    </div>
+
+    <div class="main_content_iner ">
+        <div class="container-fluid p-0">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="modal-content cs_modal">
+                                <div class="modal-body">
+                                    <form th:action="@{/appointment/recipe/save(appointmentId=${appointmentId})}"
+                                          th:object="${recipe}" method="post">
+
+                                        <div class="modal-header" style="margin-bottom: 20px">
+                                            <h3>Recipe</h3>
+                                        </div>
+
+                                        <input type="hidden" th:field="*{id}">
+
+                                        <input type="hidden" th:field="*{appointment}">
+
+                                        <input type="hidden" th:field="*{patient}">
+
+                                        <input type="hidden" th:field="*{doctor}">
+
+                                        <div class="">
+                                            <label for="drug-name" style="margin-left: 10px; margin-bottom: 10px">
+                                                Drug name
+
+                                                <br>
+                                                <label th:if="${#fields.hasErrors('drugName')}"
+                                                       th:errors="*{drugName}"
+                                                       style="color: red;">
+                                                </label>
+                                            </label>
+
+                                            <input type="text" th:field="*{drugName}" th:value="${drugName}"
+                                                   class="form-control" id="drug-name">
+                                        </div>
+
+                                       <div class="">
+                                           <label th:if="${#fields.hasErrors('recipeType')}"
+                                                  th:errors="*{recipeType}"
+                                                  style="color: red;">
+                                           </label>
+
+                                           <label for="recipe-type"></label>
+                                           <select th:field="*{recipeType}" class="custom-select" id="recipe-type">
+                                               <option value="">Select recipe type</option>
+
+                                               <option th:each="type : ${recipeTypes}"
+                                                       th:value="${type}" th:text="${type}">
+                                               </option>
+                                           </select>
+                                       </div>
+
+                                        <div class="">
+                                            <label for="rules-of-medication" style="margin-left: 10px; margin-bottom: 10px">
+                                                Rules of medication
+
+                                                <br>
+                                                <label th:if="${#fields.hasErrors('rulesOfMedication')}"
+                                                       th:errors="*{rulesOfMedication}"
+                                                       style="color: red;">
+                                                </label>
+                                            </label>
+
+                                            <input type="text" th:value="${rulesOfMedication}" th:field="*{rulesOfMedication}"
+                                                   class="form-control" id="rules-of-medication">
+                                        </div>
+
+                                        <input type="hidden" th:field="*{date}">
+
+                                        <button type="submit" class="btn_1 full_width text-center">Save</button>
+
+                                        <a th:href="@{/appointment/recipes(appointmentId=${recipe.appointment.id})}"
+                                           class="btn_1 full_width text-center">
+                                            Back
+                                        </a>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div th:insert="~{common/scripts.html}"></div>
+
+</body>
+</html>
