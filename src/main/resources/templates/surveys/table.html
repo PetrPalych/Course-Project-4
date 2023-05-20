@@ -1,0 +1,50 @@
+<div xmlns:th="http://www.thymeleaf.org"
+     xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+     class="QA_table">
+
+    <table class="table lms_table_active2">
+        <thead>
+            <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Preliminary diagnosis</th>
+                <th scope="col">Result</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr th:each="survey : ${surveys}">
+                <th scope="row">
+                    <div class="patient_thumb d-flex align-items-center">
+                        <div class="student_list_img mr_20"></div>
+                        <p th:text="${survey.date}"></p>
+                    </div>
+                </th>
+
+                <td th:text="${survey.preliminaryDiagnosis}"></td>
+
+                <td th:text="${survey.result}"></td>
+
+                <td>
+                    <a th:href="@{/}" class="btn btn-primary btn-sm">
+                        <p style="color: white;">Details</p>
+                    </a>
+
+                    <a th:href="@{/}"
+                       class="btn btn-warning btn-sm">
+
+                        <p style="color: white;">Update</p>
+                    </a>
+
+                    <a sec:authorize="hasRole('ADMIN')"
+                       th:href="@{/}"
+                       class="btn btn-danger btn-sm"
+                       onclick="if (!(confirm('Are you sure you want to delete this survey?'))) return false">
+
+                        <p style="color: white;">Delete</p>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

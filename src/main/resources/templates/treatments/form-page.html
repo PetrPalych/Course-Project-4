@@ -48,8 +48,8 @@
                                                 </label>
                                             </label>
 
-                                            <input type="date" th:value="${treatmentStartDate}" th:field="*{treatmentStartDate}"
-                                                   class="form-control" id="work-start">
+                                            <input type="date" th:value="${treatment.treatmentStartDate}"
+                                                   class="form-control" name="treatmentStartDate" id="work-start">
                                         </div>
 
                                         <div class="">
@@ -142,16 +142,11 @@
                                                 </label>
                                             </label>
 
-                                            <input type="date" th:value="${treatmentEndDate}" th:field="*{treatmentEndDate}"
-                                                      class="form-control" id="treatment-end-date">
+                                            <input type="date" th:value="${treatment.treatmentEndDate}"
+                                                      class="form-control" name="treatmentEndDate" id="treatment-end-date">
                                         </div>
 
                                         <button type="submit" class="btn_1 full_width text-center">Save</button>
-
-                                        <a th:href="@{/}"
-                                           class="btn_1 full_width text-center">
-                                            Surveys
-                                        </a>
                                     </form>
                                 </div>
                             </div>

@@ -1,13 +1,11 @@
 package kg.ash.hospital.controllers;
 
 import jakarta.validation.Valid;
+
 import kg.ash.hospital.entities.appointments.Appointment;
 import kg.ash.hospital.entities.appointments.Treatment;
-import kg.ash.hospital.entities.doctors.Doctor;
-import kg.ash.hospital.services.interfaces.AppointmentService;
-import kg.ash.hospital.services.interfaces.DoctorService;
-import kg.ash.hospital.services.interfaces.PatientService;
-import kg.ash.hospital.services.interfaces.TreatmentService;
+import kg.ash.hospital.services.interfaces.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,12 +26,15 @@ public class TreatmentController {
 
     private final DoctorService doctorService;
 
+    private final SurveyService surveyService;
+
     @Autowired
-    public TreatmentController(TreatmentService treatmentService, AppointmentService appointmentService, PatientService patientService, DoctorService doctorService) {
+    public TreatmentController(TreatmentService treatmentService, AppointmentService appointmentService, PatientService patientService, DoctorService doctorService, SurveyService surveyService) {
         this.treatmentService = treatmentService;
         this.appointmentService = appointmentService;
         this.patientService = patientService;
         this.doctorService = doctorService;
+        this.surveyService = surveyService;
     }
 
     @GetMapping("/treatment/add")
@@ -46,6 +47,22 @@ public class TreatmentController {
         model.addAttribute("treatment", treatment);
 
         return "treatments/form-page";
+    }
+
+    @GetMapping("/treatment/update")
+    public String update(@RequestParam("treatmentId") int treatmentId, @RequestParam("appointmentId") int appointmentId, Model model) {
+        model.addAttribute("appointmentId", appointmentId);
+        model.addAttribute("treatment", treatmentService.find(treatmentId));
+
+        return "treatments/form-page";
+    }
+
+    @GetMapping("/treatment")
+    public String treatment(@RequestParam("treatmentId") int treatmentId, @RequestParam("appointmentId") int appointmentId, Model model) {
+        model.addAttribute("treatment", treatmentService.find(treatmentId));
+        model.addAttribute("appointmentId", appointmentId);
+
+        return "treatments/details-page";
     }
 
     @PostMapping("/treatment/save")
@@ -66,5 +83,13 @@ public class TreatmentController {
         }
 
         return "treatments/form-page";
+    }
+
+    @GetMapping("/treatment/surveys")
+    public String surveys(@RequestParam("treatmentId") int treatmentId, Model model) {
+        model.addAttribute("treatmentId", treatmentId);
+        model.addAttribute("surveys", treatmentService.find(treatmentId).getSurveys());
+
+        return "surveys/list-page";
     }
 }

@@ -115,36 +115,21 @@
                             </div>
 
                             <div th:if="${appointment.treatment == null}" class="card">
-                                <a th:href="@{treatment/add(appointmentId = ${appointment.id}, patientId=${appointment.patient.id}, doctorId=${appointment.doctor.id})}" class="btn btn-primary">
+                                <a th:href="@{/treatment/add(appointmentId = ${appointment.id}, patientId=${appointment.patient.id}, doctorId=${appointment.doctor.id})}" class="btn btn-primary">
                                     Add treatment
                                 </a>
                             </div>
 
-                            <div th:if="${appointment.recipes.size() == 0}" class="card">
-                                <a class="btn btn-primary">
-                                    Recipes
+                            <div th:if="${appointment.treatment != null}" class="card">
+                                <a th:href="@{/treatment(treatmentId=${appointment.treatment.id}, appointmentId=${appointment.id})}" class="btn btn-primary">
+                                    Treatment
                                 </a>
                             </div>
 
-                            <div th:if="${appointment.treatment != null}" class="card">
-                                <div class="card-header" id="headingThree">
-                                    <h2 class="mb-0">
-                                        <a href="#" class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                            Treatment
-                                        </a>
-                                    </h2>
-                                </div>
-
-                                <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordion_ex">
-                                    <div class="card-body">
-                                        <b>Text:</b>
-                                        <hr>
-                                        <p th:text="${appointment.patient.birthDate}"
-                                           style="font-size: 17px; font-weight: bold; color: #2daab8">
-                                        </p>
-                                        <br>
-                                    </div>
-                                </div>
+                            <div class="card">
+                                <a class="btn btn-primary">
+                                    Recipes
+                                </a>
                             </div>
                         </div>
                     </div>
