@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <div th:insert="~{common/head.html}"></div>
 
@@ -114,7 +114,7 @@
                                 </div>
                             </div>
 
-                            <div th:if="${appointment.treatment == null}" class="card">
+                            <div sec:authorize="hasRole('DOCTOR')" th:if="${appointment.treatment == null}" class="card">
                                 <a th:href="@{/treatment/add(appointmentId = ${appointment.id}, patientId=${appointment.patient.id}, doctorId=${appointment.doctor.id})}" class="btn btn-primary">
                                     Add treatment
                                 </a>

@@ -1,10 +1,12 @@
 package kg.ash.hospital.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
-import kg.ash.hospital.entities.appointments.Appointment;
-import kg.ash.hospital.entities.doctors.Doctor;
-import kg.ash.hospital.entities.patients.Patient;
+import kg.ash.hospital.entities.appointment.Appointment;
+import kg.ash.hospital.entities.doctor.Doctor;
+import kg.ash.hospital.entities.patient.Patient;
 import kg.ash.hospital.enums.RecipeType;
 
 import lombok.AllArgsConstructor;
@@ -39,16 +41,20 @@ public class Recipe {
     @JoinColumn(name = "doctor_id", referencedColumnName = "id", nullable = false)
     private Doctor doctor;
 
+    @NotBlank(message = "Drug name is required!")
     @Column(name = "drug_name", nullable = false)
     private String drugName;
 
+    @NotNull(message = "Recipe type is required!")
     @Enumerated(EnumType.STRING)
     @Column(name = "recipe_type", nullable = false)
     private RecipeType recipeType;
 
+    @NotBlank(message = "Rules of medication are required!")
     @Column(name = "rules_of_medication", nullable = false)
     private String rulesOfMedication;
 
+    @NotNull(message = "Date is required!")
     @Column(name = "date", nullable = false)
     private LocalDate date = LocalDate.now();
 

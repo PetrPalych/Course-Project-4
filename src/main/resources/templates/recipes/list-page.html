@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <div th:insert="~{common/head.html}"></div>
 
@@ -18,7 +18,7 @@
                                 <h3 class="m-0 nowrap">Recipes directory</h3>
                             </div>
 
-                            <a th:href="@{/appointment/recipe/add(appointmentId = ${appointmentId})}"
+                            <a sec:authorize="hasRole('DOCTOR')" th:href="@{/appointment/recipe/add(appointmentId = ${appointmentId})}"
                                class="btn btn-primary" style="margin-right: 20px; float: right;">
                                 Add
                             </a>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <div th:insert="~{common/head.html}"></div>
 
@@ -134,7 +134,7 @@
                                 </a>
                             </div>
 
-                            <div class="card">
+                            <div sec:authorize="hasRole('DOCTOR')" class="card">
                                 <a th:href="@{/treatment/update(treatmentId=${treatment.id}, appointmentId=${appointmentId})}" class="btn btn-warning">
                                     Update
                                 </a>

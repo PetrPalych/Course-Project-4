@@ -30,13 +30,13 @@
                         <p style="color: white;">Details</p>
                     </a>
 
-                    <a th:href="@{/appointment/recipe/update(recipeId=${recipe.id})}"
+                    <a sec:authorize="hasRole('DOCTOR')" th:href="@{/appointment/recipe/update(recipeId=${recipe.id})}"
                        class="btn btn-warning btn-sm">
 
                         <p style="color: white;">Update</p>
                     </a>
 
-                    <a th:href="@{/appointment/recipe/delete(recipeId=${recipe.id})}"
+                    <a sec:authorize="hasRole('DOCTOR')" th:href="@{/appointment/recipe/delete(recipeId=${recipe.id})}"
                        class="btn btn-danger btn-sm"
                        onclick="if (!(confirm('Are you sure you want to delete this survey?'))) return false">
 

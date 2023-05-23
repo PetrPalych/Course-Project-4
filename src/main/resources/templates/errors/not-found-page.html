@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -7,9 +7,21 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>404</title>
+
+    <link rel="stylesheet" th:href="@{/css/not-found-page.css}"/>
 </head>
 
 <body>
-    <p>Sorry, we have found nothing.</p>
+    <section class="error-container">
+        <span>4</span>
+
+        <span>
+            <span class="screen-reader-text">0</span>
+        </span>
+
+        <span>4</span>
+    </section>
+
+    <h1 class="zoom-area">Sorry, we have found nothing!</h1>
 </body>
 </html>

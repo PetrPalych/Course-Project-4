@@ -1,9 +1,9 @@
 package kg.ash.hospital.controllers;
 
-import kg.ash.hospital.entities.appointments.Appointment;
-import kg.ash.hospital.services.interfaces.AppointmentService;
-import kg.ash.hospital.services.interfaces.DoctorService;
-import kg.ash.hospital.services.interfaces.PatientService;
+import kg.ash.hospital.entities.appointment.Appointment;
+import kg.ash.hospital.services.interfaces.appointment.AppointmentService;
+import kg.ash.hospital.services.interfaces.doctor.DoctorService;
+import kg.ash.hospital.services.interfaces.patient.PatientService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,15 +23,15 @@ public class AppointmentController {
     private final PatientService patientService;
 
     @Autowired
-    public AppointmentController(AppointmentService appointmentService, PatientService patientService, DoctorService doctorService, PatientService patientService1) {
+    public AppointmentController(AppointmentService appointmentService, DoctorService doctorService, PatientService patientService) {
         this.appointmentService = appointmentService;
         this.doctorService = doctorService;
-        this.patientService = patientService1;
+        this.patientService = patientService;
     }
 
     @GetMapping("/appointments")
     public String appointments(Model model) {
-        model.addAttribute("appointments", appointmentService.findAllOrderByIdDesk(25));
+        model.addAttribute("appointments", appointmentService.findByCurrentDoctor());
 
         return "appointments/list-page";
     }

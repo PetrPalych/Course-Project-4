@@ -1,6 +1,6 @@
 package kg.ash.hospital.configs.security;
 
-import kg.ash.hospital.entities.doctors.AccountData;
+import kg.ash.hospital.entities.doctor.AccountData;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

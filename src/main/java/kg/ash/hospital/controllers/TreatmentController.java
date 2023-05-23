@@ -3,12 +3,15 @@ package kg.ash.hospital.controllers;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
-import kg.ash.hospital.entities.appointments.Appointment;
-import kg.ash.hospital.entities.appointments.Survey;
-import kg.ash.hospital.entities.appointments.Treatment;
-import kg.ash.hospital.entities.patients.Patient;
-import kg.ash.hospital.services.interfaces.*;
+import kg.ash.hospital.entities.appointment.Appointment;
+import kg.ash.hospital.entities.appointment.Survey;
+import kg.ash.hospital.entities.appointment.Treatment;
 
+import kg.ash.hospital.services.interfaces.appointment.AppointmentService;
+import kg.ash.hospital.services.interfaces.appointment.SurveyService;
+import kg.ash.hospital.services.interfaces.appointment.TreatmentService;
+import kg.ash.hospital.services.interfaces.doctor.DoctorService;
+import kg.ash.hospital.services.interfaces.patient.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -216,6 +216,32 @@
                                             </div>
                                         </div>
 
+                                        <div class="" style="display: flex;">
+                                            <div>
+                                                <label class="form-label primary_checkbox d-flex me-12 "
+                                                       style="margin-right: 100px; margin-top: 10px; margin-bottom: 25px;">
+
+                                                    <label for="active" style="margin-right: 5px">Active</label>
+                                                    <input type="radio" th:field="*{accountData.active}" th:value="true"
+                                                           name="active" id="active">
+
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+
+                                            <div>
+                                                <label class="form-label primary_checkbox d-flex me-12 "
+                                                       style="margin-right: 100px; margin-top: 10px; margin-bottom: 25px;">
+
+                                                    <label for="not-active" style="margin-right: 5px">Not active</label>
+                                                    <input type="radio" th:field="*{accountData.active}" th:value="false"
+                                                           name="active" id="not-active">
+
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            </div>
+                                        </div>
+
                                         <button type="submit" class="btn_1 full_width text-center">Save</button>
 
                                         <a th:if="${doctor.id != 0}"

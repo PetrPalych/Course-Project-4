@@ -3,8 +3,8 @@ package kg.ash.hospital.controllers;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
-import kg.ash.hospital.entities.doctors.Doctor;
-import kg.ash.hospital.services.interfaces.DoctorService;
+import kg.ash.hospital.entities.doctor.Doctor;
+import kg.ash.hospital.services.interfaces.doctor.DoctorService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

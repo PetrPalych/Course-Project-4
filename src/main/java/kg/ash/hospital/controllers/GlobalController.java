@@ -3,8 +3,8 @@ package kg.ash.hospital.controllers;
 import kg.ash.hospital.enums.Role;
 import kg.ash.hospital.services.interfaces.AdminService;
 import kg.ash.hospital.services.interfaces.AuthService;
-import kg.ash.hospital.services.interfaces.DoctorService;
-import kg.ash.hospital.services.interfaces.PatientService;
+import kg.ash.hospital.services.interfaces.doctor.DoctorService;
+import kg.ash.hospital.services.interfaces.patient.PatientService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

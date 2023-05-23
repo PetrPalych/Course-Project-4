@@ -3,11 +3,9 @@ package kg.ash.hospital.controllers;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import kg.ash.hospital.entities.Recipe;
-import kg.ash.hospital.entities.appointments.Appointment;
-import kg.ash.hospital.entities.patients.Patient;
+import kg.ash.hospital.entities.appointment.Appointment;
 import kg.ash.hospital.enums.RecipeType;
-import kg.ash.hospital.services.interfaces.AppointmentService;
-
+import kg.ash.hospital.services.interfaces.appointment.AppointmentService;
 import kg.ash.hospital.services.interfaces.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

@@ -3,9 +3,9 @@ package kg.ash.hospital.controllers;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
-import kg.ash.hospital.entities.doctors.WorkSchedule;
+import kg.ash.hospital.entities.doctor.WorkSchedule;
 import kg.ash.hospital.enums.Day;
-import kg.ash.hospital.services.interfaces.WorkScheduleService;
+import kg.ash.hospital.services.interfaces.doctor.WorkScheduleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

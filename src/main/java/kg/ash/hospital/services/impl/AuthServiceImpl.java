@@ -1,7 +1,8 @@
 package kg.ash.hospital.services.impl;
 
-import kg.ash.hospital.dao.repositories.doctors.AccountDataRepository;
-import kg.ash.hospital.entities.doctors.AccountData;
+import kg.ash.hospital.dao.repositories.doctor.AccountDataRepository;
+import kg.ash.hospital.entities.doctor.AccountData;
+import kg.ash.hospital.errors.exceptions.NotFoundException;
 import kg.ash.hospital.services.interfaces.AuthService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class AuthServiceImpl implements AuthService {
         }
 
         else {
-            throw new RuntimeException("Not found"); // TODO
+            throw new NotFoundException("User is not found...");
         }
     }
 

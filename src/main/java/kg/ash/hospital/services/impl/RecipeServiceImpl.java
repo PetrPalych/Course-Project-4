@@ -2,7 +2,9 @@ package kg.ash.hospital.services.impl;
 
 import kg.ash.hospital.dao.repositories.RecipeRepository;
 import kg.ash.hospital.entities.Recipe;
+import kg.ash.hospital.errors.exceptions.NotFoundException;
 import kg.ash.hospital.services.interfaces.RecipeService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +35,7 @@ public class RecipeServiceImpl implements RecipeService {
         }
 
         else {
-            throw new RuntimeException("Not found"); // TODO
+            throw new NotFoundException("Recipe is not found! ID: " + id);
         }
     }
 

@@ -1,4 +1,4 @@
-<div xmlns:th="http://www.thymeleaf.org" class="QA_table">
+<div xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" class="QA_table">
 
     <table class="table lms_table_active2">
         <thead>
@@ -49,7 +49,7 @@
                         <p style="color: white;">Details</p>
                     </a>
 
-                    <a th:href="@{/appointment/delete(id=${appointment.id})}"
+                    <a sec:authorize="hasRole('REGISTRAR')" th:href="@{/appointment/delete(id=${appointment.id})}"
                        class="btn btn-danger btn-sm"
                        onclick="if (!(confirm('Are you sure you want to delete this appointment?'))) return false">
                         <p style="color: white;">Delete</p>

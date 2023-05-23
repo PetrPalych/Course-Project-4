@@ -40,8 +40,7 @@
                 </li>
 
                 <li>
-                    <a sec:authorize="hasAnyRole('REGISTRAR', 'ADMIN')"
-                       th:href="@{/patients?active=false}">Inactive patients</a>
+                    <a th:href="@{/patients?active=false}">Inactive patients</a>
                 </li>
 
                 <li>
@@ -73,7 +72,7 @@
             </ul>
         </li>
 
-        <li class="">
+        <li class="" sec:authorize="hasRole('DOCTOR')">
             <a class="has-arrow" href="#" aria-expanded="false">
                 <img th:src="@{/images/menu-icon/tasks.svg}" src="" alt="">
                 <span>Appointments</span>

@@ -3,9 +3,9 @@ package kg.ash.hospital.controllers;
 import jakarta.servlet.http.HttpServletRequest;
 
 import jakarta.validation.Valid;
-import kg.ash.hospital.entities.doctors.DutySchedule;
+import kg.ash.hospital.entities.doctor.DutySchedule;
 import kg.ash.hospital.enums.Day;
-import kg.ash.hospital.services.interfaces.DutyScheduleService;
+import kg.ash.hospital.services.interfaces.doctor.DutyScheduleService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,7 +37,7 @@ public class DutyScheduleController {
     @GetMapping("/doctor/duty-schedule/add")
     public String add(@RequestParam("id") int id, Model model) {
         DutySchedule dutySchedule = new DutySchedule();
-        dutySchedule.setDoctor(dutyScheduleService.findDoctorById(id));
+        dutySchedule.setDoctor(dutyScheduleService.findByDoctorId(id));
 
         model.addAttribute("dutySchedule", dutySchedule);
         model.addAttribute("days", Day.values());
