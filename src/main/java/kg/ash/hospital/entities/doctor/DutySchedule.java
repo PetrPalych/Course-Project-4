@@ -3,6 +3,7 @@ package kg.ash.hospital.entities.doctor;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
+import jakarta.validation.constraints.NotNull;
 import kg.ash.hospital.enums.Day;
 
 import lombok.AllArgsConstructor;
@@ -29,16 +30,16 @@ public class DutySchedule {
     @JoinColumn(name="doctor_id")
     private Doctor doctor;
 
-    @NotBlank(message = "Day is required!")
+    @NotNull(message = "Day is required!")
     @Enumerated(EnumType.STRING)
     @Column(name = "day", nullable = false)
     private Day day;
 
-    @NotBlank(message = "Duty start is required!")
+    @NotNull(message = "Duty start is required!")
     @Column(name = "duty_start", nullable = false)
     private LocalTime dutyStart;
 
-    @NotBlank(message = "Duty end is required!")
+    @NotNull(message = "Duty end is required!")
     @Column(name = "duty_end", nullable = false)
     private LocalTime dutyEnd;
 
