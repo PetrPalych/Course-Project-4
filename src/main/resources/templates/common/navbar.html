@@ -44,7 +44,7 @@
                 </li>
 
                 <li>
-                    <a sec:authorize="hasAnyRole('REGISTRAR', 'ADMIN')"
+                    <a sec:authorize="hasRole('REGISTRAR')"
                        th:href="@{/patient/add}">Add patient</a>
                 </li>
             </ul>
