@@ -74,11 +74,6 @@ public class DoctorServiceImpl implements DoctorService {
 
     @Override
     public void delete(int id) {
-        Doctor doctor = find(id);
-
-        workScheduleRepository.deleteAll(doctor.getWorkSchedule());
-        dutyScheduleRepository.deleteAll(doctor.getDutySchedule());
-
         doctorRepository.deleteById(id);
     }
 

@@ -40,7 +40,7 @@ public class Treatment {
     private Doctor doctor;
 
     @Valid
-    @OneToMany(mappedBy = "treatment")
+    @OneToMany(mappedBy = "treatment", cascade = CascadeType.ALL)
     private List<Survey> surveys;
 
     @NotNull(message = "Start date is required!")

@@ -48,10 +48,10 @@ public class Doctor {
     @Column(name = "cabinet_number", nullable = false)
     private int cabinetNumber;
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
     private List<WorkSchedule> workSchedule;
 
-    @OneToMany(mappedBy = "doctor")
+    @OneToMany(mappedBy = "doctor", cascade = CascadeType.ALL)
     private List<DutySchedule> dutySchedule;
 
     @Valid

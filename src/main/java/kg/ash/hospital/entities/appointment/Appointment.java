@@ -44,12 +44,12 @@ public class Appointment {
     private LocalDateTime dateTime = LocalDateTime.now();
 
     @Valid
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "treatment_id", referencedColumnName = "id")
     private Treatment treatment;
 
     @Valid
-    @OneToMany(mappedBy="appointment")
+    @OneToMany(mappedBy="appointment", cascade = CascadeType.ALL)
     private List<Recipe> recipes;
 
 }
