@@ -39,7 +39,6 @@ public class Treatment {
     @JoinColumn(name = "doctor_id", referencedColumnName = "id", nullable = false)
     private Doctor doctor;
 
-    @Valid
     @OneToMany(mappedBy = "treatment", cascade = CascadeType.ALL)
     private List<Survey> surveys;
 

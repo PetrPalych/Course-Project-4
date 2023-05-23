@@ -29,12 +29,10 @@ public class Appointment {
     @Column(name = "id")
     private int id;
 
-    @Valid
     @OneToOne
     @JoinColumn(name = "patient_id", referencedColumnName = "id", nullable = false)
     private Patient patient;
 
-    @Valid
     @OneToOne
     @JoinColumn(name = "doctor_id", referencedColumnName = "id", nullable = false)
     private Doctor doctor;
