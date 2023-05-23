@@ -22,17 +22,11 @@ public class DoctorServiceImpl implements DoctorService {
 
     private final DoctorRepository doctorRepository;
 
-    private final WorkScheduleRepository workScheduleRepository;
-
-    private final DutyScheduleRepository dutyScheduleRepository;
-
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
     public DoctorServiceImpl(DoctorRepository doctorRepository, WorkScheduleRepository workScheduleRepository, DutyScheduleRepository dutyScheduleRepository, PasswordEncoder passwordEncoder) {
         this.doctorRepository = doctorRepository;
-        this.workScheduleRepository = workScheduleRepository;
-        this.dutyScheduleRepository = dutyScheduleRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
