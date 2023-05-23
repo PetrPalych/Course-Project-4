@@ -107,9 +107,8 @@
                                         </div>
 
                                         <div class="">
-                                            <label th:text="'Lunch end: ' + ${lunchEnd}"
-                                                   for="lunch_end" style="margin-left: 10px; margin-bottom: 10px">
-
+                                            <label for="lunch_end" style="margin-left: 10px; margin-bottom: 10px">
+                                                Lunch end:
                                                 <br>
                                                 <label th:if="${#fields.hasErrors('lunchEnd')}"
                                                        th:errors="*{lunchEnd}"
